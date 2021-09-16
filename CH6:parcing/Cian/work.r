@@ -6,11 +6,39 @@ library(httr)
 library(purrr)
 
 # имитируем поведение человека на сайте
-to_get <- seq(0, 150, 10)
-pb <- progress_estimated(length(to_get))
+#to_get <- seq(0, 150, 10)
+#pb <- progress_estimated(length(to_get))
 GET("http://httpbin.org/user-agent", user_agent("httr"))
 
-source <- read_html("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room9=1") 
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5, "&region=2&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room7=1&room9=1")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5 ,"&region=2&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room7=1&room9=1"), function(x){
+  source <- read_html(x)  
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+    tibble(titles, links)
+}) ->
+  df_1
+
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room9=1", 1:51, ".html")
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room9=", 1:10, ".html"), function(multiPage){
+  source <- read_html(multiPage)
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") 
+}) -> links2
+
+source <- read_html("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&room1/%=1&room2=1&room3=1&room4=1&room5=1&room6=1&room9=1") 
 
 source %>%
   html_nodes("a._93444fe79c--link--39cNw") %>%
@@ -39,16 +67,19 @@ cian_spb_vas$adress <- adresses_all
 
 ### 
 
-map_chr(cian_spb_vas$links[1:28], function(subway){
+map(cian_spb_vas$links, function(subway){
   s1 <- read_html(subway)
   s1 %>%
     html_nodes("li.a10a3f92e9--underground--kONgx a.a10a3f92e9--underground_link--AzxRC")%>%
     html_text() ->
     closest_subway
-}) -> as.vector(closest_subway_all)
+}) -> closest_subway_all
+
+cian_spb_vas$clos_subway <- closest_subway_all
 
 ###
-map_chr(cian_spb_vas$links[1:4], function(subwayTime){
+lapply(cian_spb_vas$links, function(subwayTime){
+  print(links)
   s1 <- read_html(subwayTime)
 s1 %>%
   html_nodes("li.a10a3f92e9--underground--kONgx span.a10a3f92e9--underground_time--1fKft")%>%
