@@ -104,3 +104,49 @@ s1 %>%
   
   
   
+2e9--price_value--1iPpd span")%>%
+  html_text() ->
+  price
+s1 %>%
+  html_nodes("div.a10a3f92e9--popup-container--3mFh7.a10a3f92e9--popup-container--left--1yse5")%>%
+  html_text() ->
+  price_history
+s1 %>%
+  html_nodes("div.a10a3f92e9--price_per_meter--hKPtN.a10a3f92e9--price_per_meter--residential--1mFDW")%>%
+  html_text() ->
+  price_per_m
+s1 %>%
+  html_nodes("div.a10a3f92e9--info--3XiXi div.a10a3f92e9--info-value--18c8R")%>%
+  html_text() ->
+  characteristics1
+    square_tot <- (characteristics1[1])
+    square_liv <- (characteristics1[2])
+    square_kit <- (characteristics1[3])
+    floor      <- (characteristics1[4])
+    year       <- (characteristics1[5])
+s1 %>%
+  html_nodes("span.a10a3f92e9--value--3Ftu5")%>%
+  html_text() ->
+  characteristics2
+    offer_type <- (characteristics2[1])
+    planning   <- (characteristics2[2])
+    rooms_sq   <- (characteristics2[3])
+    height     <- (characteristics2[4])
+    bathroom   <- (characteristics2[5])
+    condition  <- (characteristics2[6])
+    view       <- (characteristics2[7])
+s1 %>%
+  html_nodes("div.a10a3f92e9--value--38caj")%>%
+  html_text() ->
+  characteristics3
+    walls      <- (characteristics3[2])
+    slabs      <- (characteristics3[3])
+    entrances  <- (characteristics3[4])
+    elevator   <- (characteristics3[5])
+    heating    <- (characteristics3[6])
+    critical   <- (characteristics3[7])
+    gas supply <- (characteristics3[8])
+   }) -> flats_vasileostrovskij  
+  
+  
+  
