@@ -10,10 +10,12 @@ library(purrr)
 #pb <- progress_estimated(length(to_get))
 GET("http://httpbin.org/user-agent", user_agent("httr"))
 
-str_c("https://spb.cian.ru/cat.php?deal_type=sale&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5, "&region=2&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room7=1&room9=1")
+## Собрать ссылки на объявления о продаже 1к квартир на В. О.
 
-map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5 ,"&region=2&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room7=1&room9=1"), function(x){
-  source <- read_html(x)  
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:12, "&region=2&room1=1")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:12, "&region=2&room1=1"), function(linkCollect){
+  source <- read_html(linkCollect)  
   
   source %>%
     html_nodes("a._93444fe79c--link--39cNw") %>%
@@ -25,34 +27,173 @@ map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&engine_version=2&objec
     html_text() ->
     titles
   
-    tibble(titles, links)
+  tibble(links)
 }) ->
-  df_1
+  was1_links
 
+## Собрать ссылки на объявления о продаже 2к квартир на В. О.
 
-str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room9=1", 1:51, ".html")
-map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room9=", 1:10, ".html"), function(multiPage){
-  source <- read_html(multiPage)
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:12, "&region=2&room2=1")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:12, "&region=2&room2=1"), function(linkCollect){
+  source <- read_html(linkCollect)  
+  
   source %>%
     html_nodes("a._93444fe79c--link--39cNw") %>%
-    html_attr("href") 
-}) -> links2
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+  tibble(links)
+}) ->
+  was2_links
 
-source <- read_html("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&room1/%=1&room2=1&room3=1&room4=1&room5=1&room6=1&room9=1") 
+## Собрать ссылки на объявления о продаже 3к квартир на В. О.
 
-source %>%
-  html_nodes("a._93444fe79c--link--39cNw") %>%
-  html_attr("href") ->
-  links
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:12, "&region=2&room3=1")
 
-source %>%
-  html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
-  html_text() ->
-  titles
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:12, "&region=2&room3=1"), function(linkCollect){
+  source <- read_html(linkCollect)  
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+  tibble(links)
+}) ->
+  was3_links
 
-  tibble(titles = titles,
-         links = links) ->
-    cian_spb_vas
+## Собрать ссылки на объявления о продаже 4к квартир на В. О.
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5, "&region=2&room4=1")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5, "&region=2&room4=1"), function(linkCollect){
+  source <- read_html(linkCollect)  
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+  tibble(links)
+}) ->
+  was4_links
+
+## Собрать ссылки на объявления о продаже 5к квартир на В. О.
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2, "&region=2&room5=1")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2, "&region=2&room5=1"), function(linkCollect){
+  source <- read_html(linkCollect)  
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+  tibble(links)
+}) ->
+  was5_links
+
+## Собрать ссылки на объявления о продаже 6к квартир на В. О.
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2, "&region=2&room6=1")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2, "&region=2&room6=1"), function(linkCollect){
+  source <- read_html(linkCollect)  
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+  tibble(links)
+}) ->
+  was6_links
+
+## Собрать ссылки на объявления о продаже квартир-студий на В. О.
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:8, "&region=2&room9=1")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=149&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:8, "&region=2&room9=1"), function(linkCollect){
+  source <- read_html(linkCollect)  
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+  tibble(links)
+}) ->
+  was9_links
+
+## Собрать ссылки на объявления о продаже квартир, имеющих свободную планировку, на В. О.
+
+map_dfr(str_c("https://spb.cian.ru/kupit-kvartiru-svobodnoy-planirovki-vtorichka-sankt-peterburg-vasileostrovskiy-04149/"), function(linkCollect){
+  source <- read_html(linkCollect)  
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("span._93444fe79c--color_primary_100--O6-gZ._93444fe79c--lineHeight_28px--3QLml._93444fe79c--fontWeight_bold--t3Ars._93444fe79c--fontSize_22px--3UVPd._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER span") %>%
+    html_text() ->
+    titles
+  
+  tibble(links)
+}) ->
+  was0_links
+
+# Дополнительно очистить данные
+  was8_links <- was0_links[1:4, 1]
+  rm(was0_links)
+  
+  # Объединить датафреймы
+  was_links <- bind_rows(was1_links,
+        was2_links,
+        was3_links,
+        was4_links,
+        was5_links,
+        was6_links,
+        was8_links,
+        was9_links)
+  
+  ## Убрать дублирующиеся строки
+  was_links %>% distinct() -> was_links_unique
+  
+  
   
 map_chr(cian_spb_vas$links, function(adresses){
     s1 <- read_html(adresses)
