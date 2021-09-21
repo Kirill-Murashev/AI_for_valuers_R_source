@@ -28,7 +28,8 @@ map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district[0]=747&engine
     html_text() ->
     titles
   
-  }) ->
+  tibble(links)
+}) ->
   sadadm
 
 # Собрать адреса
@@ -40,7 +41,9 @@ map_chr(sadadm$links, function(adresses){
     html_text() ->
     adress
 }) ->
-  adres
+  sadadm_adres
+
+sadadm$address <- tibble(sadadm_adres)
 
 # Собрать цены
 
@@ -51,13 +54,14 @@ map_chr(sadadm$links, function(price){
     html_text() ->
     price
 }) ->
-  price
+  sadadm_price
 
 sadadm_price = trimws(sadadm_price)
 sadadm_price <- gsub('₽', '', sadadm_price)
 sadadm_price <- gsub('\\s+', '', sadadm_price)
 
-
+sadadm$price <- tibble(sadadm_price)
+sadadm$price = trimws(sadadm$price)
 
 # Собрать цены за кв. м
 
@@ -68,21 +72,17 @@ map_chr(sadadm$links, function(pricePerM){
     html_text() ->
     price_per_m
 }) ->
-  price_per_m
+  sadadm_price_per_m
 
-price_per_m <- gsub('₽/м²', '', price_per_m)
-price_per_m = gsub('\\s+', '', price_per_m)
-as.numeric(price_per_m)
-is.numeric(price_per_m)
-price_per_met <- as.numeric(price_per_m)
-county <- rep('sadadm', 1:nrow(sadadm_new))
-county <- as.factor(county)
+sadadm_price_per_m <- gsub('₽/м²', '', sadadm_price_per_m)
+sadadm_price_per_m = gsub('\\s+', '', sadadm_price_per_m)
+as.numeric(sadadm_price_per_m)
 
-sadadm_new <- data.frame(price_m = price_per_met, county = county)
+sadadm$price_m <- tibble(sadadm_price_per_m)
 
-write_csv(sadadm_new, '/home/kaarlahti/TresoritDrive/Methodics/My/AI_for_valuers/R-source/AI_for_valuers_R_source/datasets/spba_flats_price_m/Admiraltejskij/sadadm.csv', )
 
-?write_csv
+
+
 
 sadadm_price <- gsub(' ', '', sadadm_price)
 str_replace_all(sadadm_price, fixed("\" "), "")
@@ -401,6 +401,3 @@ s1 %>%
     critical   <- (characteristics3[7])
     gas supply <- (characteristics3[8])
    }) -> flats_vasileostrovskij  
-  
-  
-  
