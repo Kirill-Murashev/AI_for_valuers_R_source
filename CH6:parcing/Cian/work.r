@@ -19,6 +19,10 @@ library(xml2)
 library(httr)
 library(purrr)
 library(stringr)
+library(styler)
+library(prettycode)
+
+style_text("a + b", transformers = tidyverse_style(scope = "indention"))
 
 # имитируем поведение человека на сайте
 #to_get <- seq(0, 150, 10)
@@ -1503,6 +1507,1521 @@ county <- rep('skrkra', nrow(skrkra))
 county <- as.factor(county)
 skrkra <- cbind(skrkra, county)
 skrkra%>% distinct() -> skrkra
+
+## Собрать ссылки на объявления о продаже квартир в МО "Кронштадт" (id skrkro)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=691&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=691&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skrkro
+
+skrkro <- data.frame(skrkro)
+county <- rep('skrkro', nrow(skrkro))
+county <- as.factor(county)
+skrkro <- cbind(skrkro, county)
+skrkro%>% distinct() -> skrkro
+
+## Собрать ссылки на объявления о продаже квартир в МО "Зеленогорск" (id skuzel)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=698&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:3)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=698&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:3), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skuzel
+
+skuzel <- data.frame(skuzel)
+county <- rep('skuzel', nrow(skuzel))
+county <- as.factor(county)
+skuzel <- cbind(skuzel, county)
+skuzel%>% distinct() -> skuzel
+
+## Собрать ссылки на объявления о продаже квартир в МО "Комарово" (id skukom)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=701&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=701&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skukom
+
+skukom <- data.frame(skukom)
+county <- rep('skukom', nrow(skukom))
+county <- as.factor(county)
+skukom <- cbind(skukom, county)
+skukom%>% distinct() -> skukom
+
+## Собрать ссылки на объявления о продаже квартир в МО "Молодёжное" (id skumol)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=694&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=694&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skumol
+
+skumol <- data.frame(skumol)
+county <- rep('skumol', nrow(skumol))
+county <- as.factor(county)
+skumol <- cbind(skumol, county)
+skumol%>% distinct() -> skumol
+
+## Собрать ссылки на объявления о продаже квартир в МО "Песочный" (id skupes)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=714&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=714&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skupes
+
+skupes <- data.frame(skupes)
+county <- rep('skupes', nrow(skupes))
+county <- as.factor(county)
+skupes <- cbind(skupes, county)
+skupes%>% distinct() -> skupes
+
+## Собрать ссылки на объявления о продаже квартир в МО "Репино" (id skurep)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=703&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=703&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skurep
+
+skurep <- data.frame(skurep)
+county <- rep('skurep', nrow(skurep))
+county <- as.factor(county)
+skurep <- cbind(skurep, county)
+skurep%>% distinct() -> skurep
+
+## Собрать ссылки на объявления о продаже квартир в МО "Серово" (id skuser)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=696&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=696&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skuser
+
+skuser <- data.frame(skuser)
+county <- rep('skuser', nrow(skuser))
+county <- as.factor(county)
+skuser <- cbind(skuser, county)
+skuser%>% distinct() -> skuser
+
+## Собрать ссылки на объявления о продаже квартир в МО "Сестрорецк" (id skuses)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=705&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:8)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=705&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:8), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skuses
+
+skuses <- data.frame(skuses)
+county <- rep('skuses', nrow(skuses))
+county <- as.factor(county)
+skuses <- cbind(skuses, county)
+skuses%>% distinct() -> skuses
+
+## Собрать ссылки на объявления о продаже квартир в МО "Смолячково" (id skusmo)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=695&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=695&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skusmo
+
+skusmo <- data.frame(skusmo)
+county <- rep('skusmo', nrow(skusmo))
+county <- as.factor(county)
+skusmo <- cbind(skusmo, county)
+skusmo%>% distinct() -> skusmo
+
+## Собрать ссылки на объявления о продаже квартир в МО "Солнечное" (id skusol)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=706&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=706&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skusol
+
+skusol <- data.frame(skusol[1:2, ])
+county <- rep('skusol', nrow(skusol))
+county <- as.factor(county)
+skusol <- cbind(skusol, county)
+skusol%>% distinct() -> skusol
+
+## Собрать ссылки на объявления о продаже квартир в МО "Ушково" (id skuush)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=697&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=697&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  skuush
+
+skuush <- data.frame(skuush[1:2, ])
+county <- rep('skuush', nrow(skuush))
+county <- as.factor(county)
+skuush <- cbind(skuush, county)
+skuush%>% distinct() -> skuush
+
+## Собрать ссылки на объявления о продаже квартир в МО "Гагаринское" (id smogag)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=767&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:14)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=767&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:14), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  smogag
+
+smogag <- data.frame(smogag)
+county <- rep('smogag', nrow(smogag))
+county <- as.factor(county)
+smogag <- cbind(smogag, county)
+smogag%>% distinct() -> smogag
+
+## Собрать ссылки на объявления о продаже квартир в МО "Звёздное" (id smozwy)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=761&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:39)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=761&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:39), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  smozwy
+
+smozwy <- data.frame(smozwy)
+county <- rep('smozwy', nrow(smozwy))
+county <- as.factor(county)
+smozwy <- cbind(smozwy, county)
+smozwy%>% distinct() -> smozwy
+
+## Собрать ссылки на объявления о продаже квартир в МО "Московская Застава" (id smomos)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=752&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:15)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=752&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:15), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  smomos
+
+smomos <- data.frame(smomos)
+county <- rep('smomos', nrow(smomos))
+county <- as.factor(county)
+smomos <- cbind(smomos, county)
+smomos%>% distinct() -> smomos
+
+## Собрать ссылки на объявления о продаже квартир в МО "Новоизмайловское" (id smonow)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=749&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:15)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=749&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:15), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  smonow
+
+smonow <- data.frame(smonow)
+county <- rep('smonow', nrow(smonow))
+county <- as.factor(county)
+smonow <- cbind(smonow, county)
+smonow%>% distinct() -> smonow
+
+## Собрать ссылки на объявления о продаже квартир в МО "Пулковский меридиан" (id smopul)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=731&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:17)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=731&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:17), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  smopul
+
+smopul <- data.frame(smopul)
+county <- rep('smopul', nrow(smopul))
+county <- as.factor(county)
+smopul <- cbind(smopul, county)
+smopul%>% distinct() -> smopul
+
+## Собрать ссылки на объявления о продаже квартир в МО "Округ № 54" (id snen54)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=786&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:11)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=786&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:11), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  snen54
+
+snen54 <- data.frame(snen54)
+county <- rep('snen54', nrow(snen54))
+county <- as.factor(county)
+snen54 <- cbind(snen54, county)
+snen54%>% distinct() -> snen54
+
+## Собрать ссылки на объявления о продаже квартир в МО "Ивановский" (id sneiwa)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=777&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=777&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sneiwa
+
+sneiwa <- data.frame(sneiwa)
+county <- rep('sneiwa', nrow(sneiwa))
+county <- as.factor(county)
+sneiwa <- cbind(sneiwa, county)
+sneiwa%>% distinct() -> sneiwa
+
+## Собрать ссылки на объявления о продаже квартир в МО "Народный" (id snenar)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=787&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:20)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=787&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:20), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  snenar
+
+snenar <- data.frame(snenar)
+county <- rep('snenar', nrow(snenar))
+county <- as.factor(county)
+snenar <- cbind(snenar, county)
+snenar%>% distinct() -> snenar
+
+## Собрать ссылки на объявления о продаже квартир в МО "Невская застава" (id snenew)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=745&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=745&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7), function(linkCollect){
+  source <- read_html(linkCollect)
+  print(linkCollect)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  snenew
+
+snenew <- data.frame(snenew)
+county <- rep('snenew', nrow(snenew))
+county <- as.factor(county)
+snenew <- cbind(snenew, county)
+snenew%>% distinct() -> snenew
+
+## Собрать ссылки на объявления о продаже квартир в МО "Невский" (id snenev)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=781&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:11)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=781&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:11), function(linkCollect_snenev){
+  source <- read_html(linkCollect_snenev)
+  print(linkCollect_snenev)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  snenev
+
+snenev <- data.frame(snenev)
+county <- rep('snenev', nrow(snenev))
+county <- as.factor(county)
+snenev <- cbind(snenev, county)
+snenev%>% distinct() -> snenev
+
+## Собрать ссылки на объявления о продаже квартир в МО "Обуховский" (id sneobu)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=782&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=782&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7), function(linkCollect_sneobu){
+  source <- read_html(linkCollect_sneobu)
+  print(linkCollect_sneobu)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sneobu
+
+sneobu <- data.frame(sneobu)
+county <- rep('sneobu', nrow(sneobu))
+county <- as.factor(county)
+sneobu <- cbind(sneobu, county)
+sneobu%>% distinct() -> sneobu
+
+## Собрать ссылки на объявления о продаже квартир в МО "Оккервиль" (id sneokk)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=791&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:6)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=791&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:6), function(linkCollect_sneokk){
+  source <- read_html(linkCollect_sneokk)
+  print(linkCollect_sneokk)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sneokk
+
+sneokk <- data.frame(sneokk)
+county <- rep('sneokk', nrow(sneokk))
+county <- as.factor(county)
+sneokk <- cbind(sneokk, county)
+sneokk%>% distinct() -> sneokk
+
+## Собрать ссылки на объявления о продаже квартир в МО "Правобережный" (id snepra)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=783&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:11)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=783&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:11), function(linkCollect_snepra){
+  source <- read_html(linkCollect_snepra)
+  print(linkCollect_snepra)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  snepra
+
+snepra <- data.frame(snepra)
+county <- rep('snepra', nrow(snepra))
+county <- as.factor(county)
+snepra <- cbind(snepra, county)
+snepra%>% distinct() -> snepra
+
+## Собрать ссылки на объявления о продаже квартир в МО "Рыбацкое" (id sneryb)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=790&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:15)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=790&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:15), function(linkCollect_sneryb){
+  source <- read_html(linkCollect_sneryb)
+  print(linkCollect_sneryb)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sneryb
+
+sneryb <- data.frame(sneryb)
+county <- rep('sneryb', nrow(sneryb))
+county <- as.factor(county)
+sneryb <- cbind(sneryb, county)
+sneryb%>% distinct() -> sneryb
+
+## Собрать ссылки на объявления о продаже квартир в МО "Аптекарский остров" (id speapt)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=753&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=753&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7), function(linkCollect_speapt){
+  source <- read_html(linkCollect_speapt)
+  print(linkCollect_speapt)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  speapt
+
+speapt <- data.frame(speapt)
+county <- rep('speapt', nrow(speapt))
+county <- as.factor(county)
+speapt <- cbind(speapt, county)
+speapt%>% distinct() -> speapt
+
+## Собрать ссылки на объявления о продаже квартир в МО "Введенский" (id spewwe)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=750&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=750&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4), function(linkCollect_spewwe){
+  source <- read_html(linkCollect_spewwe)
+  print(linkCollect_spewwe)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spewwe
+
+spewwe <- data.frame(spewwe)
+county <- rep('spewwe', nrow(spewwe))
+county <- as.factor(county)
+spewwe <- cbind(spewwe, county)
+spewwe%>% distinct() -> spewwe
+
+## Собрать ссылки на объявления о продаже квартир в МО "Кронверкское" (id spekro)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=748&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=748&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4), function(linkCollect_spekro){
+  source <- read_html(linkCollect_spekro)
+  print(linkCollect_spekro)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spekro
+
+spekro <- data.frame(spekro)
+county <- rep('spekro', nrow(spekro))
+county <- as.factor(county)
+spekro <- cbind(spekro, county)
+spekro%>% distinct() -> spekro
+
+## Собрать ссылки на объявления о продаже квартир в МО "Петровский" (id spepet)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=736&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:13)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=736&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:13), function(linkCollect_spepet){
+  source <- read_html(linkCollect_spepet)
+  print(linkCollect_spepet)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spepet
+
+spepet <- data.frame(spepet)
+county <- rep('spepet', nrow(spepet))
+county <- as.factor(county)
+spepet <- cbind(spepet, county)
+spepet%>% distinct() -> spepet
+
+## Собрать ссылки на объявления о продаже квартир в МО "Посадский" (id spepos)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=758&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=758&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7), function(linkCollect_spepos){
+  source <- read_html(linkCollect_spepos)
+  print(linkCollect_spepos)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spepos
+
+spepos <- data.frame(spepos)
+county <- rep('spepos', nrow(spepos))
+county <- as.factor(county)
+spepos <- cbind(spepos, county)
+spepos%>% distinct() -> spepos
+
+## Собрать ссылки на объявления о продаже квартир в МО "Чкаловское" (id spechk)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=733&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:16)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=733&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:16), function(linkCollectSpechk){
+  source <- read_html(linkCollectSpechk)
+  print(linkCollectSpechk)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spechk
+
+spechk <- data.frame(spechk)
+county <- rep('spechk', nrow(spechk))
+county <- as.factor(county)
+spechk <- cbind(spechk, county)
+spechk%>% distinct() -> spechk
+
+## Собрать ссылки на объявления о продаже квартир в МО "Ломоносов" (id spelom)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=699&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=699&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4), function(linkCollectSpelom){
+  source <- read_html(linkCollectSpelom)
+  print(linkCollectSpelom)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spelom
+
+spelom <- data.frame(spelom)
+county <- rep('spelom', nrow(spelom))
+county <- as.factor(county)
+spelom <- cbind(spelom, county)
+spelom%>% distinct() -> spelom
+
+## Собрать ссылки на объявления о продаже квартир в МО "Петергоф" (id spepe2)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=702&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:9)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=702&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:9), function(linkCollectSpepe2){
+  source <- read_html(linkCollectSpepe2)
+  print(linkCollectSpepe2)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spepe2
+
+spepe2 <- data.frame(spepe2)
+county <- rep('spepe2', nrow(spepe2))
+county <- as.factor(county)
+spepe2<- cbind(spepe2, county)
+spepe2%>% distinct() -> spepe2
+
+## Собрать ссылки на объявления о продаже квартир в МО "Стрельна" (id spestr)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=709&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=709&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:2), function(linkCollectSpestr){
+  source <- read_html(linkCollectSpestr)
+  print(linkCollectSpestr)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spestr
+
+spestr <- data.frame(spestr)
+county <- rep('spestr', nrow(spestr))
+county <- as.factor(county)
+spestr<- cbind(spestr, county)
+spestr%>% distinct() -> spestr
+
+## Собрать ссылки на объявления о продаже квартир в МО "Округ № 65" (id sprn65)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=726&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:32)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=726&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:32), function(linkCollectSprn65){
+  source <- read_html(linkCollectSprn65)
+  print(linkCollectSprn65)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sprn65
+
+sprn65 <- data.frame(sprn65)
+county <- rep('sprn65', nrow(sprn65))
+county <- as.factor(county)
+sprn65 <- cbind(sprn65, county)
+sprn65%>% distinct() -> sprn65
+
+## Собрать ссылки на объявления о продаже квартир в МО "Коломяги" (id sprkol)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=724&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:38)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=724&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:38), function(linkCollectSprkol){
+  source <- read_html(linkCollectSprkol)
+  print(linkCollectSprkol)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sprkol
+
+sprkol <- data.frame(sprkol)
+county <- rep('sprkol', nrow(sprkol))
+county <- as.factor(county)
+sprkol <- cbind(sprkol, county)
+sprkol%>% distinct() -> sprkol
+
+## Собрать ссылки на объявления о продаже квартир в МО "Комендантский аэродром" (id sprkom)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=746&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:10)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=746&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:10), function(linkCollectSprkom){
+  source <- read_html(linkCollectSprkom)
+  print(linkCollectSprkom)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sprkom
+
+sprkom <- data.frame(sprkom)
+county <- rep('sprkom', nrow(sprkom))
+county <- as.factor(county)
+sprkom <- cbind(sprkom, county)
+sprkom%>% distinct() -> sprkom
+
+## Собрать ссылки на объявления о продаже квартир в МО "Лахта-Ольгино" (id sprlax)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=715&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=715&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5), function(linkCollectSprlax){
+  source <- read_html(linkCollectSprlax)
+  print(linkCollectSprlax)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sprlax
+
+sprlax <- data.frame(sprlax)
+county <- rep('sprlax', nrow(sprlax))
+county <- as.factor(county)
+sprlax <- cbind(sprlax, county)
+sprlax%>% distinct() -> sprlax
+
+## Собрать ссылки на объявления о продаже квартир в МО "Озеро Долгое" (id sproze)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=737&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:13)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=737&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:13), function(linkCollectSproze){
+  source <- read_html(linkCollectSproze)
+  print(linkCollectSproze)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sproze
+
+sproze <- data.frame(sproze)
+county <- rep('sproze', nrow(sproze))
+county <- as.factor(county)
+sproze <- cbind(sproze, county)
+sproze%>% distinct() -> sproze
+
+## Собрать ссылки на объявления о продаже квартир в МО "Чёрная речка" (id sprchy)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=742&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:16)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=742&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:16), function(linkCollectSprchy){
+  source <- read_html(linkCollectSprchy)
+  print(linkCollectSprchy)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sprchy
+
+sprchy <- data.frame(sprchy)
+county <- rep('sprchy', nrow(sprchy))
+county <- as.factor(county)
+sprchy <- cbind(sprchy, county)
+sprchy%>% distinct() -> sprchy
+
+## Собрать ссылки на объявления о продаже квартир в МО "Юнтолово" (id spryun)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=727&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:29)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=727&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:29), function(linkCollectSpryun){
+  source <- read_html(linkCollectSpryun)
+  print(linkCollectSpryun)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spryun
+
+spryun <- data.frame(spryun)
+county <- rep('spryun', nrow(spryun))
+county <- as.factor(county)
+spryun <- cbind(spryun, county)
+spryun%>% distinct() -> spryun
+
+## Собрать ссылки на объявления о продаже квартир в МО "Юнтолово" (id sprlis)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=708&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=708&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollectSprlis){
+  source <- read_html(linkCollectSprlis)
+  print(linkCollectSprlis)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sprlis
+
+sprlis <- data.frame(sprlis[1:11, ])
+county <- rep('sprlis', nrow(sprlis))
+county <- as.factor(county)
+sprlis <- cbind(sprlis, county)
+sprlis%>% distinct() -> sprlis
+
+## Собрать ссылки на объявления о продаже квартир в МО "Александровская" (id spuale)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=757&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=757&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollectSpuale){
+  source <- read_html(linkCollectSpuale)
+  print(linkCollectSpuale)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spuale
+
+spuale <- data.frame(spuale)
+county <- rep('spuale', nrow(spuale))
+county <- as.factor(county)
+spuale <- cbind(spuale, county)
+spuale%>% distinct() -> spuale
+
+## Собрать ссылки на объявления о продаже квартир в МО "Павловск" (id spupaw)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=764&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:3)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=764&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:3), function(linkCollectSpupaw){
+  source <- read_html(linkCollectSpupaw)
+  print(linkCollectSpupaw)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spupaw
+
+spupaw <- data.frame(spupaw)
+county <- rep('spupaw', nrow(spupaw))
+county <- as.factor(county)
+spupaw <- cbind(spupaw, county)
+spupaw%>% distinct() -> spupaw
+
+## Собрать ссылки на объявления о продаже квартир в МО "Пушкин" (id spupus)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=734&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:16)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=734&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:16), function(linkCollectSpupus){
+  source <- read_html(linkCollectSpupus)
+  print(linkCollectSpupus)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spupus
+
+spupus <- data.frame(spupus)
+county <- rep('spupus', nrow(spupus))
+county <- as.factor(county)
+spupus <- cbind(spupus, county)
+spupus%>% distinct() -> spupus
+
+## Собрать ссылки на объявления о продаже квартир в МО "Тярлево" (id sputya)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=784&engine_version=2&object_type%5B0%5D=1&offer_type=flat")
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=784&engine_version=2&object_type%5B0%5D=1&offer_type=flat"), function(linkCollectSputya){
+  source <- read_html(linkCollectSputya)
+  print(linkCollectSputya)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sputya
+
+sputya <- data.frame(sputya[1:4, ])
+county <- rep('sputya', nrow(sputya))
+county <- as.factor(county)
+sputya <- cbind(sputya, county)
+sputya%>% distinct() -> sputya
+
+## Собрать ссылки на объявления о продаже квартир в МО "Пушкин" (id spushu)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=688&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:31)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=688&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:31), function(linkCollectSpushu){
+  source <- read_html(linkCollectSpushu)
+  print(linkCollectSpushu)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  spushu
+
+spushu <- data.frame(spushu)
+county <- rep('spushu', nrow(spushu))
+county <- as.factor(county)
+spushu <- cbind(spushu, county)
+spushu%>% distinct() -> spushu
+
+## Собрать ссылки на объявления о продаже квартир в МО "Округ № 72" (id sfrn72)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=776&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=776&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7), function(linkCollectSfrn72){
+  source <- read_html(linkCollectSfrn72)
+  print(linkCollectSfrn72)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sfrn72
+
+sfrn72 <- data.frame(sfrn72)
+county <- rep('sfrn72', nrow(sfrn72))
+county <- as.factor(county)
+sfrn72 <- cbind(sfrn72, county)
+sfrn72%>% distinct() -> sfrn72
+
+## Собрать ссылки на объявления о продаже квартир в МО "Округ № 75" (id sfrn75)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=693&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=693&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:7), function(linkCollectSfrn75){
+  source <- read_html(linkCollectSfrn75)
+  print(linkCollectSfrn75)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sfrn75
+
+sfrn75 <- data.frame(sfrn75)
+county <- rep('sfrn75', nrow(sfrn75))
+county <- as.factor(county)
+sfrn75 <- cbind(sfrn75, county)
+sfrn75%>% distinct() -> sfrn75
+
+## Собрать ссылки на объявления о продаже квартир в МО "Балканский" (id sfrbal)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=775&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:6)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=775&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:6), function(linkCollectSfrbal){
+  source <- read_html(linkCollectSfrbal)
+  print(linkCollectSfrbal)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sfrbal
+
+sfrbal <- data.frame(sfrbal)
+county <- rep('sfrbal', nrow(sfrbal))
+county <- as.factor(county)
+sfrbal <- cbind(sfrbal, county)
+sfrbal%>% distinct() -> sfrbal
+
+## Собрать ссылки на объявления о продаже квартир в МО "Балканский" (id sfrwol)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=765&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:13)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=765&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:13), function(linkCollectSfrwol){
+  source <- read_html(linkCollectSfrwol)
+  print(linkCollectSfrwol)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sfrwol
+
+sfrwol <- data.frame(sfrwol)
+county <- rep('sfrwol', nrow(sfrwol))
+county <- as.factor(county)
+sfrwol <- cbind(sfrwol, county)
+sfrwol%>% distinct() -> sfrwol
+
+## Собрать ссылки на объявления о продаже квартир в МО "Георгиевский" (id sfrgeo)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=762&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:10)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=762&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:10), function(linkCollectSfrgeo){
+  source <- read_html(linkCollectSfrgeo)
+  print(linkCollectSfrgeo)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sfrgeo
+
+sfrgeo <- data.frame(sfrgeo)
+county <- rep('sfrgeo', nrow(sfrgeo))
+county <- as.factor(county)
+sfrgeo <- cbind(sfrgeo, county)
+sfrgeo%>% distinct() -> sfrgeo
+
+## Собрать ссылки на объявления о продаже квартир в МО "Купчино" (id sfrkup)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=690&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=690&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:5), function(linkCollectSfrkup){
+  source <- read_html(linkCollectSfrkup)
+  print(linkCollectSfrkup)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sfrkup
+
+sfrkup <- data.frame(sfrkup)
+county <- rep('sfrkup', nrow(sfrkup))
+county <- as.factor(county)
+sfrkup <- cbind(sfrkup, county)
+sfrkup%>% distinct() -> sfrkup
+
+## Собрать ссылки на объявления о продаже квартир в МО "Округ № 78" (id sczn78)
+
+str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=687&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4)
+
+map_dfr(str_c("https://spb.cian.ru/cat.php?deal_type=sale&district%5B0%5D=687&engine_version=2&object_type%5B0%5D=1&offer_type=flat&p=", 1:4), function(linkCollectSczn78){
+  source <- read_html(linkCollectSczn78)
+  print(linkCollectSczn78)
+  
+  source %>%
+    html_nodes("a._93444fe79c--link--39cNw") %>%
+    html_attr("href") ->
+    links
+  
+  source %>%
+    html_nodes("div._93444fe79c--container--2h0AF p._93444fe79c--color_gray60_100--3VLtJ._93444fe79c--lineHeight_20px--2dV2a._93444fe79c--fontWeight_normal--2G6_P._93444fe79c--fontSize_14px--10R7l._93444fe79c--display_block--1eYsq._93444fe79c--text--2_SER") %>%
+    html_text() ->
+    price_m
+  tibble(links, price_m)
+  
+}) ->
+  sczn78
+
+sczn78 <- data.frame(sczn78)
+county <- rep('sczn78', nrow(sczn78))
+county <- as.factor(county)
+sczn78 <- cbind(sczn78, county)
+sczn78%>% distinct() -> sczn78
+
+
+
 
 
 
