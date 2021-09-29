@@ -4564,7 +4564,7 @@ lloniz%>% distinct() -> lloniz
 
 str_c("https://www.cian.ru/cat.php?bbox=59.934348359101406%2C29.388671339990193%2C59.97102638157549%2C29.588141860009742&center=59.95269246124098%2C29.488406599999966&deal_type=sale&engine_version=2&in_polygon[0]=29.4062818_59.96866%2C29.4018147_59.9643434%2C29.3990658_59.9600268%2C29.4007839_59.9551922%2C29.4083435_59.9512209%2C29.4148722_59.948113%2C29.4251808_59.9441417%2C29.4344585_59.9417244%2C29.4427053_59.9398251%2C29.4509522_59.9384438%2C29.4602299_59.9377532%2C29.4750055_59.9368899%2C29.49253_59.9367172%2C29.5086801_59.9367172%2C29.518645_59.9367172%2C29.5296408_59.9367172%2C29.5464781_59.9368899%2C29.5554122_59.9375805%2C29.5674388_59.9396525%2C29.5749985_59.9413791%2C29.5777474_59.9456957%2C29.5760293_59.9498396%2C29.5701878_59.9536382%2C29.5602229_59.9558829%2C29.5506015_59.9583002%2C29.5426983_59.9598541%2C29.5341079_59.9614081%2C29.5241429_59.9622714%2C29.514178_59.9631347%2C29.5031822_59.9636527%2C29.4932173_59.9643434%2C29.4835959_59.965034%2C29.4677895_59.96607%2C29.4554192_59.9667607%2C29.4471724_59.967106%2C29.4361766_59.9672787%2C29.425868_59.9677967%2C29.416934_59.9683147%2C29.4086871_59.9684873%2C29.4062818_59.96866&object_type[0]=1&offer_type=flat&polygon_name[0]=%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room7=1&room9=1&zoom=13")
 
-map_dfr(str_c("https://www.cian.ru/cat.php?bbox=59.934348359101406%2C29.388671339990193%2C59.97102638157549%2C29.588141860009742&center=59.95269246124098%2C29.488406599999966&deal_type=sale&engine_version=2&in_polygon[0]=29.4062818_59.96866%2C29.4018147_59.9643434%2C29.3990658_59.9600268%2C29.4007839_59.9551922%2C29.4083435_59.9512209%2C29.4148722_59.948113%2C29.4251808_59.9441417%2C29.4344585_59.9417244%2C29.4427053_59.9398251%2C29.4509522_59.9384438%2C29.4602299_59.9377532%2C29.4750055_59.9368899%2C29.49253_59.9367172%2C29.5086801_59.9367172%2C29.518645_59.9367172%2C29.5296408_59.9367172%2C29.5464781_59.9368899%2C29.5554122_59.9375805%2C29.5674388_59.9396525%2C29.5749985_59.9413791%2C29.5777474_59.9456957%2C29.5760293_59.9498396%2C29.5701878_59.9536382%2C29.5602229_59.9558829%2C29.5506015_59.9583002%2C29.5426983_59.9598541%2C29.5341079_59.9614081%2C29.5241429_59.9622714%2C29.514178_59.9631347%2C29.5031822_59.9636527%2C29.4932173_59.9643434%2C29.4835959_59.965034%2C29.4677895_59.96607%2C29.4554192_59.9667607%2C29.4471724_59.967106%2C29.4361766_59.9672787%2C29.425868_59.9677967%2C29.416934_59.9683147%2C29.4086871_59.9684873%2C29.4062818_59.96866&object_type[0]=1&offer_type=flat&polygon_name[0]=%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room7=1&room9=1&zoom=13"), function(linkCollectLlobol){
+map_dfr(str_c("https://www.cian.ru/cat.php?bbox=59.934348359101406%2C29.388671339990193%2C59.97102638157549%2C29.588141860009742&center=59.95269246124098%2C29.488406599999966&deal_type=sale&engine_version=2&in_polygon[0]=29.4062818_59.96866%2C29.4018147_59.9643434%2C29.3990658_59.9600268%2C29.4007839_59.9551922%2C29.4083435_59.9512209%2C29.4148722_59.948113%2C29.4251808_59.9441417%2C29.4344585_59.9417244%2C29.4427053_59.9398251%2C29.4509522_59.9384438%2C29.4602299_59.9377532%2C29.4750055_59.9368899%2C29.49253_59.9367172%2C29.5086801_59.9367172%2C29.518645_59.9367172%2C29.5296408_59.9367172%2C29.5464781_59.9368899%2C29.5554122_59.9375805%2C29.5674388_59.9396525%2C29.5749985_59.9413791%2C29.5777474_59.9456957%2C29.5760293_59.9498396%2C29.5701878_59.9536382%2C29.5602229_59.9558829%2C29.5506015_59.9583002%2C29.5426983_59.9598541%2C29.5341079_59.9614081%2C29.5241429_59.9622714%2C29.514178_59.9631347%2C29.5031822_59.9636527%2C29.4932173_59.9643434%2C29.4835959_59.965034%2C29.4677895_59.96607%2C29.4554192_59.9667607%2C29.4471724_59.967106%2C29.4361766_59.9672787%2C29.425868_59.9677967%2C29.416934_59.9683147%2C29.4086871_59.9684873%2C29.4062818_59.96866&object_type[0]=1&offer_type=flat&polygon_name[0]=%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0&room1=1&room2=1&room3=1&room4=1&room5=1&room6=1&room7=1&room9=1&zoom=13"), function(linkCollectLlobol){ 
   source <- read_html(linkCollectLlobol)
   print(linkCollectLlobol)
   
@@ -4588,32 +4588,41 @@ county <- as.factor(county)
 llobol <- cbind(llobol, county)
 llobol%>% distinct() -> llobol
 
+s_adm <- rbind(sadadm, sadeka, sadizm, sadkol, sadsem, sadsen)
+s_was <- rbind(swan07, swawas, swagaw, swamor, swaost)
+s_wyb <- rbind(swyn15, swypar, swysam, swyswe, swysos, swyshu, swylew, svypar)
+s_kal <- rbind(skan21, skaaka, skagra, skapis, skapro, skasew, skafin)
+s_kir <- rbind(skiawt, skidac, skikny, skikra, skimor, skinar, skiulq)
+s_kol <- rbind(skokol, skomet, skopet, skopon, skosap, skoust)
+s_krg <- rbind(skrbol, skrmal, skrpol, skrpor, skrrzh)
+s_krs <- rbind(skrgor, skrkon, skrsos, skruri, skryug, skryuz, skrkra)
+s_krn <- rbind(skrkro)
+s_kur <- rbind(skuzel, skumol, skupes, skurep, skuses, skusol)
+s_mos <- rbind(smogag, smozwy, smomos, smonow, smopul)
+s_new <- rbind(snen54, sneiwa, snenar, snenew, snenev, sneobu, sneokk, snepra, sneryb)
+s_pet <- rbind(speapt, spewwe, spekro, spepet, spepos, spechk)
+s_pec <- rbind(spelom, spepe2, spestr)
+s_prm <- rbind(sprn65, sprkol, sprkom, sprlax, sproze, sprchy, spryun, sprlis)
+s_pus <- rbind(spupaw, spupus, sputya, spushu)
+s_frz <- rbind(sfrn72, sfrn75, sfrbal, sfrwol, sfrgeo, sfrkup)
+s_czn <- rbind(sczn78, sczwla, sczdwo, sczlig, sczlit, sczsmo)
+l_wyb <- rbind(lwyros)
+l_wsw <- rbind(lwsser, lwsyuk, lwsste, lwsaga, lwstok, lwsbug, lwszap, lwsdew, lwswos, lwswse, lwsrom, lwsugl, lwsbor, lwsmor, lwsyan, lwskol, lwskal, lwswoe, lwsraz, lwszan, lwssew, lwsyuz, lwsdub, lwsnow, lwsswe)
+l_kir <- rbind(lkikir, lkishl, lkisin, lkiotr, lkimga, lkinik)
+l_tos <- rbind(ltokra, ltotos, ltowoj)
+l_gat <- rbind(lgakom, lgakob, lgagat, lgazha, lgapud, lgamal, lgataj)
+l_lom <- rbind(lloter, llolag, llorop, llonow, llogor, lloraz, lloniz, llobol)
 
+spb <- rbind(s_adm, s_czn, s_frz, s_kal, s_kir, s_kol, s_krg, s_krn, s_krs, s_kur, s_mos, s_new, s_pec, s_pet, s_prm, s_was, s_wyb, s_pus)
+lo <- rbind(l_wyb, l_wsw, l_kir, l_tos, l_gat, l_lom)
 
+spba <- rbind(spb, lo)
+spba$price_m <- gsub("[^0-9.-]", "", spba$price_m)
+spba$price_m <- as.numeric(spba$price_m)
+spba_flats %>% distinct() -> spba_flats
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+summary(spba$price_m)
+write.csv(spba, '/home/kaarlahti/TresoritDrive/Methodics/My/AI_for_valuers/R-source/AI_for_valuers_R_source/datasets/spba_flats_price_m/spba_flats.csv')
 
 # Собрать адреса
 
