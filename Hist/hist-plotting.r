@@ -1,15 +1,16 @@
 library(tidyverse)
 library(moments)
 library(xtable)
+library(gamlss)
 options("scipen"=999, "digits"=3)
 # установить рабочую директорию
-setwd("/home/kaarlahti/TresoritDrive/Methodics/My/AI_for_valuers/R-source/AI_for_valuers_R_source/Hist/")
+setwd("/home/user/.../Hist/")
 # прочитать данные, первая строка --- заголовок, разделитель колонок --- запятая, десятичный разделитель --- точка
 # x --- positional аргумент
 # header, sep, dec --- named
-almatyFlats <- read.csv('/home/kaarlahti/TresoritDrive/Methodics/My/AI_for_valuers/datasets/Almaty/almaty-apts-2019-1.csv', header = TRUE, sep = ",", dec = ".")
+almatyFlats <- read.csv('', header = TRUE, sep = ",", dec = ".")
 
-spbaFlats <- read.csv('/home/kaarlahti/TresoritDrive/Methodics/My/AI_for_valuers/datasets/Saint-Petersburg/flats/spba_flats_210928.csv', header = TRUE, sep = ",", dec = ".")
+spbaFlats <- read.csv('https://github.com/Kirill-Murashev/datasets/blob/main/Saint-Petersburg/flats/spba_flats_210928.csv', header = TRUE, sep = ",", dec = ".")
 
 # изменить тип объекта на более удобный и современный
 as_tibble(almatyFlats)
@@ -170,7 +171,21 @@ kOptimalAlmaty <- tibble(function_name, kOptimalAlmaty)
 
 xtable(kOptimalAlmaty,caption = "оптимальное число k, полученное различными методами", auto = TRUE)
 
-hist(almatyFlats$price.m, breaks = 12, freq = FALSE, xlab = "Цена предложения, казахстанские рубли", ylab = "Плотность вероятности", main = "Гистограмма удельных цен предложений на квартиры, выставленные на вторичном рынке города Алматы (лето 2019)")
+hist(almatyFlats$price.m,
+     freq = FALSE,
+     xlab = "price, kaz rubles",
+     ylab = "probability",
+     main = "Price per meter histogram, Almaty, summer 2019")
+
+histDist(almatyFlats$price.m,
+         nbins = kHistNowiczkij1(almatyFlats$price.m),
+         xlab = "price, kaz rubles",
+         ylab = "probability",
+         main = "Price per meter histogram, Almaty, summer 2019")
+lines(density(almatyFlats$price.m))
+pretty(almatyFlats$price.m)
+?histDist
+
 
 kOptimalSpba <- optimalK(spbaFlats$price_m)  
 function_name<- c("Sturgess0", "Sturgess1", "Sturgess2", "BruksKarruzer", "HeinholdGaede", "MannWald", "Williams", "HahnShapiro", "ShapiroHahn", "KendallStuart", "Taushanow", "Tonewa", "Alekseewa", "Nowiczkij1", "Nowiczkij2", "Nowiczkij3_min", "Nowiczkij3_max")
@@ -179,4 +194,13 @@ kOptimalSpba <- tibble(function_name, kOptimalSpba)
 
 xtable(kOptimalSpba,caption = "оптимальное число k, полученное различными методами", auto = TRUE)
 
-hist(spbaFlats$price_m, breaks = 98, freq = FALSE, xlab = "Цена предложения, российские рубли", ylab = "Плотность вероятности", main = "Гистограмма удельных цен предложений на квартиры, выставленные на вторичном рынке Санкт-Петербургской городской агломерации (2021-09-28)")  
+histDist(spbaFlats$price_m,
+         nbins = kHistAlekseewa(spbaFlats$price_m),
+         xlab = "price, rub",
+         ylab = "probability",
+         main = "Price per meter, histogram, SPBA (2021-09-28)")  
+lines(density(spbaFlats$price_m))
+
+rm(kOptimalAlmaty)
+rm(kOptimalSpba)
+rm(spbaFlats)
