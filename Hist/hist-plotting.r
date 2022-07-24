@@ -3,12 +3,13 @@ library(moments)
 library(xtable)
 library(gamlss)
 options("scipen"=999, "digits"=3)
+set.seed(281000)
 # установить рабочую директорию
 setwd("/home/user/.../Hist/")
 # прочитать данные, первая строка --- заголовок, разделитель колонок --- запятая, десятичный разделитель --- точка
 # x --- positional аргумент
 # header, sep, dec --- named
-almatyFlats <- read.csv('', header = TRUE, sep = ",", dec = ".")
+almatyFlats <- read.csv('https://github.com/Kirill-Murashev/datasets/blob/main/Almaty/almaty-apts-2019-1.csv', header = TRUE, sep = ",", dec = ".")
 
 spbaFlats <- read.csv('https://github.com/Kirill-Murashev/datasets/blob/main/Saint-Petersburg/flats/spba_flats_210928.csv', header = TRUE, sep = ",", dec = ".")
 
@@ -165,24 +166,26 @@ optimalK <- function(x, na.omit = FALSE){ # создать функцию для
   return(k)
 }
 
-kOptimalAlmaty <- optimalK(almatyFlats$price.m)  
-function_name<- c("Sturgess0", "Sturgess1", "Sturgess2", "BruksKarruzer", "HeinholdGaede", "MannWald", "Williams", "HahnShapiro", "ShapiroHahn", "KendallStuart", "Taushanow", "Tonewa", "Alekseewa", "Nowiczkij1", "Nowiczkij2", "Nowiczkij3_min", "Nowiczkij3_max")
-kOptimalAlmaty <- tibble(function_name, kOptimalAlmaty)
+kOptimalAlmaty <- optimalK(almatyFlats$price.m) # рассчитать k для переменной price.m набора данных almatyFlats
 
-xtable(kOptimalAlmaty,caption = "оптимальное число k, полученное различными методами", auto = TRUE)
+function_name<- c("Sturgess0", "Sturgess1", "Sturgess2", "BruksKarruzer", "HeinholdGaede", "MannWald", "Williams", "HahnShapiro", "ShapiroHahn", "KendallStuart", "Taushanow", "Tonewa", "Alekseewa", "Nowiczkij1", "Nowiczkij2", "Nowiczkij3_min", "Nowiczkij3_max") # создать вектор с именами методов
 
-hist(almatyFlats$price.m,
-     freq = FALSE,
-     xlab = "price, kaz rubles",
-     ylab = "probability",
-     main = "Price per meter histogram, Almaty, summer 2019")
+kOptimalAlmaty <- tibble(function_name, kOptimalAlmaty) # создать сводную  таблицу
 
-histDist(almatyFlats$price.m,
+xtable(kOptimalAlmaty,caption = "оптимальное число k, полученное различными методами", auto = TRUE) # экспортировать в LaTeX
+
+hist(almatyFlats$price.m, # построить гистограмму для набора данных almatyFlats
+     freq = FALSE,                                            # построение вероятностной гистограммы вместо частостной
+     xlab = "price, kaz rubles",                              # подпись оси y
+     ylab = "probability",                                    # подпись оси y
+     main = "Price per meter histogram, Almaty, summer 2019") # заголовок
+
+histDist(almatyFlats$price.m, # построить гистограмму, совмещённую с кривой плотности теоретического нормального ираспределения для набора данных almatyFlats
          nbins = kHistNowiczkij1(almatyFlats$price.m),
          xlab = "price, kaz rubles",
          ylab = "probability",
          main = "Price per meter histogram, Almaty, summer 2019")
-lines(density(almatyFlats$price.m))
+lines(density(almatyFlats$price.m)) # добавить кривую плотности эмпирического распределения
 pretty(almatyFlats$price.m)
 ?histDist
 
@@ -204,3 +207,9 @@ lines(density(spbaFlats$price_m))
 rm(kOptimalAlmaty)
 rm(kOptimalSpba)
 rm(spbaFlats)
+dim(almatyFlats)
+
+log(21)
+
+t <- rnorm(350)
+hist(t, freq = FALSE)
